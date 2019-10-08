@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"strings"
+	"golang.org/x/net/html/charset"
 )
 
 func Must(doc *Document, err error) *Document {
@@ -32,6 +33,7 @@ func ParseFile(filename string) (*Document, error) {
 
 func Parse(r io.Reader) (*Document, error) {
 	p := xml.NewDecoder(r)
+	p.CharsetReader = charset.NewReaderLabel
 	t, err := p.Token()
 	if err != nil {
 		return nil, err
