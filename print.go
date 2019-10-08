@@ -21,6 +21,10 @@ func stringifyDirective(directive *xml.Directive) string {
 	return fmt.Sprintf("<!%s>", string(*directive))
 }
 
+func PrintXML(buf *bytes.Buffer, n *Node, level int, indent string) {
+	printXML(buf, n, level, indent)
+}
+
 func printXML(buf *bytes.Buffer, n *Node, level int, indent string) {
 	pretty := len(indent) > 0
 
